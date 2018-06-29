@@ -3,7 +3,7 @@ from .models import Note, PersonalNote
 class NoteSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Note
-        field = ('title', 'content')
+        fields = ('title', 'content')
 
 class NoteViewset(viewsets.ModelViewSet):
     serializer_class = NoteSerializer
@@ -14,6 +14,10 @@ class PersonalNoteSerializer(serializers.HyperlinkedModelSerializer):
         model = PersonalNote
         field = ('title', 'content')
 
-class NoteViewset(viewsets.ModelViewSet):
-    serializer_class = PersonalNoteSerializer
+    def create(self, validated_data):
+        import pdb; pdb.set_trace()
+        
+
+class PersonalNoteViewset(viewsets.ModelViewSet):
+    serializer_class = NoteSerializer
     queryset = PersonalNote.objects.all()

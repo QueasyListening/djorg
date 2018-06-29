@@ -17,12 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 #from django.conf.urls import url, include
 from rest_framework import routers
-from notes.api import NoteViewset, PersonalNoteViewset
+from notes.api import NoteViewset
+from notes.api import PersonalNoteViewset
 
 router = routers.DefaultRouter()
-router.register(r'notes', NoteViewSet)
+router.register(r'notes', NoteViewset)
+router.register(r'personalnotes', PersonalNoteViewset)
 urlpatterns = [
     path('admin/', admin.site.urls),
-    url(r'^api-auth/', include('rest_framework.urls')),
-    path(r'api/', include(router.urls)),
+    #url(r'^api-auth/', include('rest_framework.urls')),
+    path('api/', include(router.urls)),
 ]
